@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://mock-air.herokuapp.com'
+  baseUrl: 'https://mock-air.herokuapp.com',
+  airportDropdownItemCount: 5
 };
 
 /*

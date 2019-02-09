@@ -3,18 +3,21 @@
 <app-date-picker></app-date-picker>
 -->
 
-<div>
-    <form (submit)="onSubmit()">
-        <div>
-            <input type="text" placeholder="origin" name="origin" [(ngModel)]="searchParams.origin"/>
-            <input type="text" placeholder="destination" name="destination" [(ngModel)]="searchParams.destination" />
-        </div>
-        <div>
-            <input type="date" name="departure" [(ngModel)]="searchParams.departure"/>
-            <input type="date" name="arrival" [(ngModel)]="searchParams.arrival"/>
-        </div>
-        <div>
-            <input type="submit" value="Submit" />
-        </div>
-    </form>
-</div>
+<form class="search-form-component" (submit)="onSubmit()">
+  <div class="search-form-line">
+    <!--
+    <input type="text" placeholder="origin" name="origin" [(ngModel)]="searchParams.origin" />
+    <input type="text" placeholder="destination" name="destination" [(ngModel)]="searchParams.destination" />
+
+    (change)="onAirportChange()"
+    -->
+    <app-airport-picker></app-airport-picker>
+  </div>
+  <div class="search-form-line">
+    <input type="date" name="departure" [(ngModel)]="searchParams.departure" />
+    <input type="date" name="arrival" [(ngModel)]="searchParams.arrival" />
+  </div>
+  <div class="search-form-line">
+    <input class="button primary fix-width" type="submit" value="Search" />
+  </div>
+</form>

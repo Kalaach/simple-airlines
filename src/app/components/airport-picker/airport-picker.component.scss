@@ -1,0 +1,49 @@
+@import '../../../styles/variables';
+
+.airport-picker-component {
+  position: relative;
+
+  input {
+    border: 1px solid $color_border;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: $color_font_dark;
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .airport-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    left: 0px;
+    border: 1px solid $color_border;
+    font-size: 14px;
+    background-color: white;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+    li {
+      padding: $general_padding / 2;
+      text-align: left;
+      font-weight: bold;
+      color: $color_sea;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color_border;
+      }
+
+      label {
+        color: $color_font_medium;
+      }
+    }
+
+    p {
+      padding: $general_padding / 2;
+    }
+  }
+}

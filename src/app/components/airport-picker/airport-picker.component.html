@@ -1,1 +1,30 @@
-<p>airport picker component</p>
+<div class="airport-picker-component">
+  <input
+    type="text"
+    name="origin"
+    [(ngModel)]="originShortName"
+    (input)="onAirportInputDebounce($event)"
+    placeholder="Origin"
+    autocomplete="off" />
+  <input
+    type="text"
+    name="destination"
+    [(ngModel)]="destinationShortName"
+    (input)="onAirportInputDebounce($event)"
+    [disabled]="!origin || !originShortName"
+    placeholder="Destination"
+    autocomplete="off"/>
+
+<!-- MEGCSINALNI KÉT DROPDOWNRA! -->
+
+  <div class="airport-dropdown" *ngIf="airportDropdownVisible">
+    <ul *ngIf="airportDropdownList.length > 0">
+      <li *ngFor="let airport of airportDropdownList" (click)="onAirportClick(airport)">
+        <label>{{ airport.iata }} /</label> {{ airport.shortName }}
+      </li>
+    </ul>
+    <p *ngIf="airportDropdownList.length === 0">
+      Sorry, but we didn't find any matches... :/
+    </p>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import '../../../styles/variables';
+
+.search-page-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/assets/images/background.jpg');
+  background-position: bottom;
+  background-size: cover;
+
+  .search-panel {
+    .search-panel-header {
+      border-bottom: 1px solid $color_border;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      padding: $general_padding;
+      padding-bottom: $general_padding / 2;
+      text-align: center;
+      background-color: $color_light;
+
+      img {
+        width: 240px;
+      }
+    }
+
+    .search-panel-body {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      padding: $general_padding;
+      text-align: center;
+      color: $color_font_medium;
+      background-color: $color_light;
+
+      p {
+        margin-bottom: $general_padding;
+      }
+    }
+  }
+}

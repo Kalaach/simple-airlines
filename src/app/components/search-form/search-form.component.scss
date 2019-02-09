@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+.search-form-component {
+  .search-form-line {
+    margin-bottom: $general_padding;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
