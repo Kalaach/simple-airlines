@@ -1,8 +1,11 @@
 import * as _ from 'lodash';
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { AirportService } from 'src/app/services/airport.service';
 import { IAirport } from 'src/app/interfaces/airport.interface';
 import { environment } from '../../../environments/environment';
+
+const INPUT_DEBOUNCE: number = 300;
+
 @Component({
   selector: 'app-airport-picker',
   templateUrl: './airport-picker.component.html',
@@ -21,11 +24,15 @@ export class AirportPickerComponent {
   @Input()
   public destination?: IAirport;
 
+  @ViewChild('destination')
+  public destinationElement: ElementRef;
+
   public originShortName: string;
   public destinationShortName: string;
-  public lastEditedInputName: string;
-  public airportDropdownVisible: boolean = false;
-  public airportDropdownList: Array<IAirport> = [];
+  public originDropdownVisible: boolean = false;
+  public destinationDropdownVisible: boolean = false;
+  public originDropdownList: Array<IAirport> = [];
+  public destinationDropdownList: Array<IAirport> = [];
 
   public constructor(private airportService: AirportService) {
     this.originShortName = _.get(this.origin, 'shortName');
@@ -38,41 +45,77 @@ export class AirportPickerComponent {
     window.removeEventListener('click', this.onWindowClick);
   }
 
-  public onAirportClick(airport: IAirport) {
-    this[this.lastEditedInputName] = airport;
-    this[`${this.lastEditedInputName}ShortName`] = airport.shortName;
-    this[`${this.lastEditedInputName}Change`].emit(airport);
-  }
-
-  public onAirportInputDebounce: Function = _.debounce(this.onAirportInput, 300);
-
-  private onAirportInput($event: any) {
-    this.lastEditedInputName = $event.target.attributes.name.value;
-    this.populateAirportDropdownList($event.target.value);
-  }
-
   private onWindowClick = (): void => {
-    this.airportDropdownVisible = false;
+    this.originDropdownVisible = false;
+    this.destinationDropdownVisible = false;
     this.originShortName = _.get(this.origin, 'shortName');
     this.destinationShortName = _.get(this.destination, 'shortName');
   };
 
-  private populateAirportDropdownList(searchPhrase: string): void {
-    this.airportService.getAirportsBySearchPhrase(searchPhrase)
+  public onOriginItemClick(airport: IAirport): void {
+    this.origin = airport;
+    this.originShortName = airport.shortName;
+    this.originChange.emit(this.origin);
+    this.destination = undefined;
+    this.destinationShortName = '';
+    this.destinationChange.emit(this.destination);
+    setTimeout(() => { this.destinationElement.nativeElement.focus(); }, 300);
+  }
+
+  public onDestinationItemClick(airport: IAirport): void {
+    this.destination = airport;
+    this.destinationShortName = airport.shortName;
+    this.destinationChange.emit(airport);
+  }
+
+  public onOriginInputDebounce: Function = _.debounce(this.onOriginInput, INPUT_DEBOUNCE);
+  public onDestinationInputDebounce: Function = _.debounce(this.onDestinationInput, INPUT_DEBOUNCE);
+
+  private onOriginInput($event: any): void {
+    const searchPhrase: string = $event.target.value;
+
+    if (!searchPhrase) {
+      this.originDropdownList = [];
+      this.originDropdownVisible = false;
+      this.origin = undefined;
+      this.originShortName = '';
+      this.originChange.emit(this.origin);
+      this.destination = undefined;
+      this.destinationShortName = '';
+      this.destinationChange.emit(this.destination);
+      return;
+    }
+
+    this.getAirportDropdownList(searchPhrase)
       .then(airports => {
-        this.airportDropdownList = airports.slice(0, environment.airportDropdownItemCount);
-
-        /* TODO: come up with a better solution, because this is UGLY UGLY UGLY... */
-        if (this.lastEditedInputName === 'destination') {
-          this.airportDropdownList = _.filter(this.airportDropdownList, airport =>
-            _.find(this.origin.connections, { iata: airport.iata })
-          ) as Array<IAirport>
-        }
-
-        console.log(this.airportDropdownList);
-
-        this.airportDropdownVisible = this.airportDropdownList.length > 0 || !!searchPhrase;
+        this.originDropdownList = airports;
+        this.originDropdownVisible = this.originDropdownList.length > 0 || !!searchPhrase;
       });
+  }
+
+  private onDestinationInput($event: any): void {
+    const searchPhrase: string = $event.target.value;
+
+    if (!searchPhrase) {
+      this.destinationDropdownList = [];
+      this.destinationDropdownVisible = false;
+      this.destination = undefined;
+      this.destinationShortName = '';
+      this.destinationChange.emit(this.destination);
+      return;
+    }
+
+    this.getAirportDropdownList(searchPhrase)
+      .then(airports => {
+        this.destinationDropdownList = _.filter(airports, airport =>
+          _.find(this.origin.connections, { iata: airport.iata })) as Array<IAirport>;
+        this.destinationDropdownVisible = this.originDropdownList.length > 0 || !!searchPhrase;
+      });
+  }
+
+  private getAirportDropdownList(searchPhrase: string): Promise<Array<IAirport>> {
+    return this.airportService.getAirportsBySearchPhrase(searchPhrase)
+      .then(airports => airports.slice(0, environment.airportDropdownItemCount));
   }
 
 }

@@ -14,8 +14,7 @@
     <app-airport-picker></app-airport-picker>
   </div>
   <div class="search-form-line">
-    <input type="date" name="departure" [(ngModel)]="searchParams.departure" />
-    <input type="date" name="arrival" [(ngModel)]="searchParams.arrival" />
+    <app-date-picker></app-date-picker>
   </div>
   <div class="search-form-line">
     <input class="button primary fix-width" type="submit" value="Search" />

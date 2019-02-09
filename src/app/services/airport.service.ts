@@ -34,6 +34,10 @@ export class AirportService {
   }
 
   public getAirportsBySearchPhrase(searchPhrase: string): Promise<Array<IAirport>> {
+    if (!searchPhrase) {
+      return Promise.resolve([]);
+    }
+
     searchPhrase = searchPhrase.toLowerCase();
     return this.getAirports()
       .then(airports =>

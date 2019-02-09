@@ -1,1 +1,16 @@
-<p>date picker component</p>
+<div class="date-picker-component">
+  <input
+    type="text"
+    name="departure"
+    [(ngModel)]="formattedDeparture"
+    placeholder="Departure"
+    autocomplete="off" />
+  <input
+    type="text"
+    name="arrival"
+    #arrival
+    [(ngModel)]="formattedArrival"
+    [disabled]="!departure || !formattedDeparture"
+    placeholder="Arrival"
+    autocomplete="off"/>
+</div>

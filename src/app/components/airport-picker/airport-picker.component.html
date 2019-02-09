@@ -3,28 +3,39 @@
     type="text"
     name="origin"
     [(ngModel)]="originShortName"
-    (input)="onAirportInputDebounce($event)"
+    (input)="onOriginInputDebounce($event)"
     placeholder="Origin"
     autocomplete="off" />
   <input
     type="text"
     name="destination"
+    #destination
     [(ngModel)]="destinationShortName"
-    (input)="onAirportInputDebounce($event)"
+    (input)="onDestinationInputDebounce($event)"
     [disabled]="!origin || !originShortName"
     placeholder="Destination"
     autocomplete="off"/>
 
-<!-- MEGCSINALNI KÉT DROPDOWNRA! -->
-
-  <div class="airport-dropdown" *ngIf="airportDropdownVisible">
-    <ul *ngIf="airportDropdownList.length > 0">
-      <li *ngFor="let airport of airportDropdownList" (click)="onAirportClick(airport)">
-        <label>{{ airport.iata }} /</label> {{ airport.shortName }}
+  <div class="airport-dropdown" *ngIf="originDropdownVisible">
+    <ul *ngIf="originDropdownList.length > 0">
+      <li *ngFor="let originItem of originDropdownList" (click)="onOriginItemClick(originItem)">
+        <label>{{ originItem.iata }} /</label> {{ originItem.shortName }}
       </li>
     </ul>
-    <p *ngIf="airportDropdownList.length === 0">
+    <p *ngIf="originDropdownList.length === 0">
       Sorry, but we didn't find any matches... :/
     </p>
   </div>
+
+  <div class="airport-dropdown" *ngIf="destinationDropdownVisible">
+    <ul *ngIf="destinationDropdownList.length > 0">
+      <li *ngFor="let destinationItem of destinationDropdownList" (click)="onDestinationItemClick(destinationItem)">
+        <label>{{ destinationItem.iata }} /</label> {{ destinationItem.shortName }}
+      </li>
+    </ul>
+    <p *ngIf="destinationDropdownList.length === 0">
+      Sorry, but we didn't find any matches, or there is no connection from the origin... :/
+    </p>
+  </div>
 </div>
+
