@@ -1,7 +1,9 @@
 <p>flights page</p>
 <app-summary></app-summary>
 
-<app-search-form [searchParams]="searchParams" (searchFormSubmit)="onSearchFormSubmit($event)"></app-search-form>
+<div>
+  <app-search-form [searchParams]="searchParams" (searchFormSubmit)="onSearchFormSubmit($event)"></app-search-form>
+</div>
 
 <app-flight-list></app-flight-list>
 <app-flight-item></app-flight-item>

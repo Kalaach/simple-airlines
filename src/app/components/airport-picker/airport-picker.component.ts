@@ -34,15 +34,19 @@ export class AirportPickerComponent {
   public originDropdownList: Array<IAirport> = [];
   public destinationDropdownList: Array<IAirport> = [];
 
-  public constructor(private airportService: AirportService) {
-    this.originShortName = _.get(this.origin, 'shortName');
-    this.destinationShortName = _.get(this.destination, 'shortName');
+  public constructor(private airportService: AirportService) { }
 
+  public ngOnInit(): void {
     window.addEventListener('click', this.onWindowClick);
   }
 
-  public onDestoy(): void {
+  public ngOnDestoy(): void {
     window.removeEventListener('click', this.onWindowClick);
+  }
+
+  public ngOnChanges(): void {
+    this.originShortName = _.get(this.origin, 'shortName');
+    this.destinationShortName = _.get(this.destination, 'shortName');
   }
 
   private onWindowClick = (): void => {

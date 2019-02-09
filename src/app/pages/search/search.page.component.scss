@@ -10,6 +10,8 @@
   background-size: cover;
 
   .search-panel {
+    margin-top: $general_padding * -3;
+
     .search-panel-header {
       border-bottom: 1px solid $color_border;
       border-top-right-radius: 5px;

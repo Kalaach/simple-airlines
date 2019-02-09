@@ -2,10 +2,18 @@
 
 .search-form-component {
   .search-form-line {
+    position: relative;
     margin-bottom: $general_padding;
 
     &:last-child {
       margin-bottom: 0px;
+    }
+
+    .search-form-warning {
+      position: absolute;
+      margin-top: 5px;
+      color: $color_fire;
+      font-size: 12px;
     }
   }
 }

@@ -1,6 +1,7 @@
 @import '../../../styles/variables';
 
 .airport-picker-component {
+  display: flex;
   position: relative;
 
   &::after {
@@ -19,6 +20,7 @@
   }
 
   input {
+    flex: 1;
     border: 1px solid $color_border;
     padding: 12px 15px;
     font-size: 16px;
@@ -42,23 +44,23 @@
     z-index: 1;
 
     li {
-      padding: $general_padding / 2;
+      padding: 20px $general_padding / 2;
       text-align: left;
-      font-weight: bold;
-      color: $color_sea;
+      font-weight: normal;
       cursor: pointer;
 
       &:hover {
-        background-color: $color_border;
+        color: $color_sea;
       }
 
       label {
-        color: $color_font_medium;
+        font-weight: bold;
       }
     }
 
     p {
       padding: $general_padding / 2;
+      font-size: 12px;
     }
   }
 }

@@ -1,0 +1,58 @@
+.date-picker {
+  button {
+    font-family: 'Open Sans', arial;
+  }
+
+  .owl-dialog-container {
+    border-radius: 5px;
+    background-color: $color_light;
+  }
+
+  .owl-dt-calendar-control {
+    padding: $general_padding;
+  }
+
+  .owl-dt-control-period-button:hover > .owl-dt-control-button-content {
+    background-color: transparent;
+  }
+
+  .owl-dt-calendar-table {
+    .owl-dt-calendar-cell-content {
+      font-size: 14px;
+    }
+
+    .owl-dt-calendar-cell-selected {
+      background-color: $color_sea;
+    }
+
+    .owl-dt-calendar-cell-in-range {
+      background-color: mix(white, $color_sea, 50);
+    }
+  }
+
+  .owl-dt-container-info {
+    display: none;
+  }
+
+  .owl-dt-container-buttons {
+    padding: 10px;
+    height: 3.5em;
+
+    .owl-dt-control-button {
+      border-style: none;
+      font-size: 16px;
+      font-weight: bold;
+      color: $color_fire;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &:hover {
+        color: darken($color_dark, 10);
+
+        span {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

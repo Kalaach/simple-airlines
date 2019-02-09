@@ -1,20 +1,25 @@
-<!--
-<app-airport-picker></app-airport-picker>
-<app-date-picker></app-date-picker>
--->
-
-<form class="search-form-component" (submit)="onSubmit()">
+<form #searchForm="ngForm" class="search-form-component" (submit)="onSubmit()">
   <div class="search-form-line">
-    <!--
-    <input type="text" placeholder="origin" name="origin" [(ngModel)]="searchParams.origin" />
-    <input type="text" placeholder="destination" name="destination" [(ngModel)]="searchParams.destination" />
-
-    (change)="onAirportChange()"
-    -->
-    <app-airport-picker></app-airport-picker>
+    <app-airport-picker
+      [origin]="searchParams.origin"
+      [destination]="searchParams.destination"
+      (originChange)="onOriginChange($event)"
+      (destinationChange)="onDestinationChange($event)">
+    </app-airport-picker>
+    <div class="search-form-warning" *ngIf="displayAirportWarning()">
+      Please select the origin and destination of your flight.
+    </div>
   </div>
   <div class="search-form-line">
-    <app-date-picker></app-date-picker>
+    <app-date-picker
+      [departure]="searchParams.departure"
+      [arrival]="searchParams.arrival"
+      (departureChange)="onDepartureChange($event)"
+      (arrivalChange)="onArrivalChange($event)">
+    </app-date-picker>
+    <div class="search-form-warning" *ngIf="displayTravelDateWarning()">
+      Please select a departure date.
+    </div>
   </div>
   <div class="search-form-line">
     <input class="button primary fix-width" type="submit" value="Search" />

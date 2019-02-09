@@ -1,6 +1,7 @@
 @import '../../../styles/variables';
 
 .date-picker-component {
+  display: flex;
   position: relative;
 
   &::after {
@@ -19,6 +20,7 @@
   }
 
   input {
+    flex: 1;
     border: 1px solid $color_border;
     padding: 12px 15px;
     font-size: 16px;
@@ -27,6 +29,21 @@
 
     &:focus {
       box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .clear-arrival-date {
+    position: absolute;
+    bottom: 16px;
+    right: $general_padding / 2;
+    cursor: pointer;
+
+    i {
+      color: $color_dark;
+
+      &:hover {
+        color: darken($color_dark, 10);
+      }
     }
   }
 }

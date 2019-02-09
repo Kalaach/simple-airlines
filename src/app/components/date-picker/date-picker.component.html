@@ -2,15 +2,42 @@
   <input
     type="text"
     name="departure"
-    [(ngModel)]="formattedDeparture"
+    [min]="minimumDate"
+    [(ngModel)]="travelDates"
+    [owlDateTime]="departureDatePicker"
+    [owlDateTimeTrigger]="departureDatePicker"
+    [selectMode]="'rangeFrom'"
     placeholder="Departure"
+    readonly
     autocomplete="off" />
   <input
     type="text"
     name="arrival"
-    #arrival
-    [(ngModel)]="formattedArrival"
-    [disabled]="!departure || !formattedDeparture"
+    [min]="minimumDate"
+    [(ngModel)]="travelDates"
+    [owlDateTime]="arrivalDatePicker"
+    [owlDateTimeTrigger]="arrivalDatePicker"
+    [selectMode]="'rangeTo'"
     placeholder="Arrival"
+    readonly
     autocomplete="off"/>
+
+  <div class="clear-arrival-date" *ngIf="travelDates[1]" (click)="onClearArrivalDateClick()">
+    <i class="fas fa-times"></i>
+  </div>
+
+  <owl-date-time
+    #departureDatePicker
+    [pickerType]="'calendar'"
+    [pickerMode]="'dialog'"
+    [panelClass]="'date-picker'"
+    (afterPickerClosed)="afterDepartureDatePickerClosed()">
+  </owl-date-time>
+  <owl-date-time
+    #arrivalDatePicker
+    [pickerType]="'calendar'"
+    [pickerMode]="'dialog'"
+    [panelClass]="'date-picker'"
+    (afterPickerClosed)="afterArrivalDatePickerClosed()">
+  </owl-date-time>
 </div>

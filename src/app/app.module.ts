@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from 'ng-pick-datetime';
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,16 @@ import { FlightItemComponent } from './components/flight-item/flight-item.compon
 import { FlightService } from './services/flight.service';
 import { AirportService } from './services/airport.service';
 import { HttpClientModule } from '@angular/common/http';
+
+const DATE_PICKER_FORMATS: OwlDateTimeFormats = {
+  parseInput: 'l LT',
+    fullPickerInput: 'l LT',
+    datePickerInput: 'YYYY.MM.DD',
+    timePickerInput: 'LT',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+};
 
 @NgModule({
   declarations: [
@@ -32,11 +45,15 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    OwlDateTimeModule,
+    OwlMomentDateTimeModule
   ],
   providers: [
     FlightService,
-    AirportService
+    AirportService,
+    { provide: OWL_DATE_TIME_FORMATS, useValue: DATE_PICKER_FORMATS }
   ],
   bootstrap: [AppComponent]
 })
