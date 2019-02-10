@@ -1,0 +1,113 @@
+@import '../../../styles/variables';
+
+.flight-item-component {
+  position: relative;
+  border: 1px solid $color_border;
+  margin-bottom: 5px;
+  padding: $general_padding / 2;
+  background-color: white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color_fire;
+  }
+
+  &.selected {
+    border: 2px solid $color_sea;
+
+    .flight-purchase-details {
+      .price-label {
+        background-color: $color_dark;
+      }
+    }
+  }
+
+  &.sold-out {
+    cursor: default;
+
+    &:hover {
+      border-color: $color_border;
+    }
+
+    .flight-purchase-details {
+      .price-label {
+        background-color: $color_dark;
+      }
+    }
+
+    .sold-out-cover {
+      display: block;
+    }
+  }
+
+  .flight-time-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .flight-time {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .flight-duration {
+      font-size: 14px;
+      color: $color_font_medium;
+    }
+
+    .flight-time-line {
+      flex-grow: 1;
+      margin: 0 $general_padding / 2;
+      height: 1px;
+      background-color: $color_border;
+    }
+  }
+
+  .flight-purchase-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: $general_padding / 2;
+
+    .price-label {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 10px $general_padding / 2;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background-color: $color_fire;
+
+      span {
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+
+    .change-label {
+      font-size: 12px;
+      color: $color_dark;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .sold-out-cover {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+
+    .sold-out-message {
+      position: absolute;
+      right: $general_padding / 2;
+      bottom: $general_padding / 2;
+      font-weight: bold;
+      color: $color_dark;
+    }
+  }
+}

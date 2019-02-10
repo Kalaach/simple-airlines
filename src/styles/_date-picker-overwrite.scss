@@ -9,7 +9,7 @@
   }
 
   .owl-dt-calendar-control {
-    padding: $general_padding;
+    padding: $general-padding / 2;
   }
 
   .owl-dt-control-period-button:hover > .owl-dt-control-button-content {
@@ -26,7 +26,8 @@
     }
 
     .owl-dt-calendar-cell-in-range {
-      background-color: mix(white, $color_sea, 50);
+      color: white;
+      background-color: $color_sea;
     }
   }
 
@@ -42,12 +43,12 @@
       border-style: none;
       font-size: 16px;
       font-weight: bold;
-      color: $color_fire;
+      color: $color_sea;
       text-transform: uppercase;
       cursor: pointer;
 
       &:hover {
-        color: darken($color_dark, 10);
+        color: darken($color_sea, 10);
 
         span {
           background-color: transparent;

@@ -12,6 +12,7 @@
   </div>
   <div class="search-form-line">
     <app-date-picker
+      #datePickerComponent
       [departure]="searchParams.departure"
       [arrival]="searchParams.arrival"
       (departureChange)="onDepartureChange($event)"
@@ -22,6 +23,6 @@
     </div>
   </div>
   <div class="search-form-line">
-    <input class="button primary fix-width" type="submit" value="Search" />
+    <input class="button fix-width" [ngClass]="{ primary: fieryCta, secondary: !fieryCta }" type="submit" value="Search" />
   </div>
 </form>

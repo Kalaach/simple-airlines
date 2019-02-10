@@ -1,0 +1,25 @@
+<div class="fare-picker-component">
+  <div class="flight-title">
+    <i class="fas fa-plane-departure flight-icon"></i>
+    <div class="flight-details">
+      <p>
+        {{ flightDetails.originShortName }} - {{ flightDetails.destinationShortName }}
+        <br />
+        <span>{{ flightDetails.flightDateFormatted }}</span>
+      </p>
+    </div>
+  </div>
+  <p class="fare-message">
+    Please choose a fare.
+  </p>
+  <div class="fare-list">
+    <div class="fare" *ngFor="let fare of fares" (click)="onFareClick(fare)">
+      <div class="fare-name">
+        {{ fare.bundle }}
+      </div>
+      <div class="fare-cost">
+        {{ fare.price }}€
+      </div>
+    </div>
+  </div>
+</div>

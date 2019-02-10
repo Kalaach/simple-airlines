@@ -1,9 +1,82 @@
-<p>flights page</p>
-<app-summary></app-summary>
+<div class="flights-page-component">
+  <header>
+    <img src="/assets/images/logo_light.png" alt="Simple Airlines logo." />
+  </header>
 
-<div>
-  <app-search-form [searchParams]="searchParams" (searchFormSubmit)="onSearchFormSubmit($event)"></app-search-form>
+  <main>
+    <div class="search-form">
+      <app-search-form #searchFormComponent [searchParams]="searchParams"
+        (searchFormSubmit)="onSearchFormSubmit($event)"></app-search-form>
+    </div>
+    <div class="flight-list-container">
+      <div class="departures flight-list">
+        <div class="flight-list-title">
+          <i class="fas fa-plane-departure flight-icon"></i>
+          <div class="flight-list-details">
+            <p *ngIf="savedSearchParams.origin && savedSearchParams.destination">
+              {{ savedSearchParams.origin.shortName }} - {{ savedSearchParams.destination.shortName }}
+              <br />
+              <span>{{ formatDate(savedSearchParams.departure) }}</span>
+            </p>
+          </div>
+        </div>
+        <img class="loading-indicator" *ngIf="departureFlightListLoading || !savedSearchParams.origin" src="/assets/images/loading.gif" alt="Loading the departures." />
+        <div class="flight-list-items">
+          <ng-container *ngIf="!departureFlightListLoading">
+            <ng-container *ngIf="!selectedDepartureFlight">
+              <app-flight-item [flight]="flight" *ngFor="let flight of departureFlightList"
+                (click)="onFlightClick(flight)"></app-flight-item>
+            </ng-container>
+            <app-flight-item *ngIf="selectedDepartureFlight" [flight]="selectedDepartureFlight"
+              [selectedFare]="selectedDepartureFare" (selectionCancel)="onDepartureFlightSelectionCancel()">
+            </app-flight-item>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="arrivals flight-list">
+        <div class="flight-list-title">
+          <i class="fas fa-plane-arrival flight-icon"></i>
+          <div class="flight-list-details">
+            <p *ngIf="savedSearchParams.origin && savedSearchParams.destination">
+              {{ savedSearchParams.destination.shortName }} - {{ savedSearchParams.origin.shortName }}
+              <br />
+              <span>{{ formatDate(savedSearchParams.arrival) }}</span>
+            </p>
+          </div>
+        </div>
+        <img class="loading-indicator" *ngIf="arrivalFlightListLoading || !savedSearchParams.destination" src="/assets/images/loading.gif" alt="Loading the arrivals." />
+        <div class="flight-list-items" *ngIf="savedSearchParams.arrival">
+          <ng-container *ngIf="!arrivalFlightListLoading">
+            <ng-container *ngIf="!selectedArrivalFlight">
+              <app-flight-item [flight]="flight" *ngFor="let flight of arrivalFlightList"
+                (click)="onFlightClick(flight)">
+              </app-flight-item>
+            </ng-container>
+          </ng-container>
+          <app-flight-item *ngIf="selectedArrivalFlight" [flight]="selectedArrivalFlight"
+            [selectedFare]="selectedArrivalFare" (selectionCancel)="onArrivalFlightSelectionCancel()"></app-flight-item>
+        </div>
+        <div class="no-arrival-flight" *ngIf="savedSearchParams && !savedSearchParams.arrival">
+          <p>
+            How about returning with us?<br />Simple choice.
+          </p>
+          <button class="fix-width secondary button"
+            [owlDateTimeTrigger]="searchFormComponent.datePickerComponent.arrivalDatePicker">Choose date</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- <aside *ngIf="true">
+    <app-summary></app-summary>
+  </aside> -->
+
+  <ng-container *ngIf="farePickerVisible">
+    <div class="modal-overlay" (click)="onModalOverlayClick()"></div>
+    <div class="modal">
+      <app-fare-picker [fares]="selectedFlight.fares" [flightDetails]="selectedFlightDetails"
+        (fareSelect)="onFarePick($event)"></app-fare-picker>
+    </div>
+  </ng-container>
 </div>
-
-<app-flight-list></app-flight-list>
-<app-flight-item></app-flight-item>

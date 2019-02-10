@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from 'ng-pick-datetime';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 
@@ -13,11 +13,11 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { AirportPickerComponent } from './components/airport-picker/airport-picker.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { SummaryComponent } from './components/summary/summary.component';
-import { FlightListComponent } from './components/flight-list/flight-list.component';
 import { FlightItemComponent } from './components/flight-item/flight-item.component';
 import { FlightService } from './services/flight.service';
 import { AirportService } from './services/airport.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FarePickerComponent } from './components/fare-picker/fare-picker.components';
 
 const DATE_PICKER_FORMATS: OwlDateTimeFormats = {
   parseInput: 'l LT',
@@ -38,14 +38,14 @@ const DATE_PICKER_FORMATS: OwlDateTimeFormats = {
     AirportPickerComponent,
     DatePickerComponent,
     SummaryComponent,
-    FlightListComponent,
-    FlightItemComponent
+    FlightItemComponent,
+    FarePickerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
+    NoopAnimationsModule,
     HttpClientModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule

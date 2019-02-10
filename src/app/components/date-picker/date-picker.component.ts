@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Moment } from 'moment';
 
 @Component({
@@ -19,23 +19,23 @@ export class DatePickerComponent {
   @Output()
   public arrivalChange: EventEmitter<Moment> = new EventEmitter<Moment>();
 
+  @ViewChild('arrivalDatePicker')
+  public arrivalDatePicker: ElementRef;
+
   public minimumDate: Date = new Date();
   public travelDates: Array<Moment> = [];
 
   public ngOnChanges(): void {
-    this.travelDates = [this.departure, this.arrival];
+    this.travelDates = [ this.departure, this.arrival ];
   }
 
   public onClearArrivalDateClick(): void {
-    this.travelDates = this.travelDates.slice(0, 1);
+    this.travelDates.splice(0, 1);
     this.arrivalChange.emit();
   }
 
-  public afterDepartureDatePickerClosed(): void {
+  public afterDatePickerClosed(): void {
     this.departureChange.emit(this.travelDates[0]);
-  }
-
-  public afterArrivalDatePickerClosed(): void {
     this.arrivalChange.emit(this.travelDates[1]);
   }
 }

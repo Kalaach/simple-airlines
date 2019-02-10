@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+
+.summary-component {
+  padding: 0 $general_padding;
+
+  .ticket {
+    padding: $general_padding 0;
+    border-bottom: 1px solid $color_border;
+
+    .flight-route {
+      margin-bottom: 5px;
+    }
+
+    .flight-time {
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: $color_font_medium;
+    }
+  }
+
+  .total {
+    padding: $general_padding 0;
+  }
+
+  .summary-line {
+    color: $color_dark;
+
+    .summary-line-description {
+      display: inline-block;
+    }
+
+    .summary-line-cost {
+      float: right;
+      font-weight: bold;
+    }
+  }
+
+  .checkout {
+    text-align: center;
+  }
+}

@@ -11,6 +11,7 @@
     readonly
     autocomplete="off" />
   <input
+    #arrivalDateInput
     type="text"
     name="arrival"
     [min]="minimumDate"
@@ -31,13 +32,14 @@
     [pickerType]="'calendar'"
     [pickerMode]="'dialog'"
     [panelClass]="'date-picker'"
-    (afterPickerClosed)="afterDepartureDatePickerClosed()">
+    (afterPickerClosed)="afterDatePickerClosed()">
   </owl-date-time>
   <owl-date-time
     #arrivalDatePicker
     [pickerType]="'calendar'"
     [pickerMode]="'dialog'"
     [panelClass]="'date-picker'"
-    (afterPickerClosed)="afterArrivalDatePickerClosed()">
+    [startAt]="travelDates[0]"
+    (afterPickerClosed)="afterDatePickerClosed()">
   </owl-date-time>
 </div>

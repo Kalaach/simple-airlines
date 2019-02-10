@@ -1,0 +1,70 @@
+@import '../../../styles/variables';
+
+.fare-picker-component {
+  .flight-title {
+    display: flex;
+    align-items: center;
+
+    .flight-icon {
+      color: $color_sea;
+      margin-right: $general_padding / 2;
+      font-size: 20px;
+    }
+
+    .flight-details {
+      line-height: 1.2em;
+      font-weight: bold;
+
+      span {
+        font-weight: normal;
+        color: $color_font_medium;
+      }
+    }
+  }
+
+  .fare-message {
+    margin: $general_padding 0;
+    text-align: center;
+    font-size: 14px;
+    color: $color_font_medium;
+  }
+
+  .fare-list {
+    .fare {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: $general_padding / 2;
+      border-radius: 5px;
+      padding: $general_padding / 2;
+      color: white;
+      cursor: pointer;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:nth-child(1) {
+        background-color: lighten($color_dark, 30);
+      }
+
+      &:nth-child(2) {
+        background-color: lighten($color_dark, 15);
+      }
+
+      &:nth-child(3) {
+        background-color: $color_dark;
+      }
+
+      &:hover {
+        background-color: $color_fire;
+      }
+    }
+
+    .fare-cost {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+}

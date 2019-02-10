@@ -1,0 +1,85 @@
+@import '../../../styles/variables';
+
+.flights-page-component {
+  min-height: 100vh;
+  background-color: $color_light;
+
+  header {
+    img {
+      height: 60%;
+      vertical-align: middle;
+    }
+  }
+
+  .search-form {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px + $general_padding;
+    text-align: center;
+  }
+
+  .flight-list-container {
+    display: flex;
+    margin-top: $general_padding;
+    border-top: 1px solid $color_border;
+    padding-top: $general_padding;
+    padding-bottom: $general_padding;
+    color: $color_font_dark;
+
+    .loading-indicator {
+      display: block;
+      margin: $general_padding auto;
+    }
+
+    .flight-list {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      &:first-child {
+        margin-right: $general_padding;
+      }
+
+      .flight-list-title {
+        display: flex;
+        align-items: center;
+
+        .flight-icon {
+          color: $color_sea;
+          margin-right: $general_padding / 2;
+          font-size: 20px;
+        }
+
+        .flight-list-details {
+          line-height: 1.2em;
+          font-weight: bold;
+
+          span {
+            font-weight: normal;
+            color: $color_font_medium;
+          }
+        }
+      }
+
+      .flight-list-items {
+        margin-top: $general_padding;
+      }
+
+      .no-arrival-flight {
+        flex-grow: 1;
+        margin-top: $general_padding;
+        border: 2px dashed $color_border;
+        border-radius: 5px;
+        padding: $general_padding / 2;
+        text-align: center;
+        font-size: 14px;
+        color: $color_font_medium;
+        background: darken($color_light, 3);
+
+        button {
+          margin-top: $general_padding / 2;
+        }
+      }
+    }
+  }
+}

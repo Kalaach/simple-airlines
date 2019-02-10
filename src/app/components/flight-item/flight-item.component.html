@@ -1,1 +1,34 @@
-<p>flight item component</p>
+<div class="flight-item-component sold-out" [ngClass]="{ 'sold-out': soldOut, 'selected': selectedFare }">
+  <div class="flight-time-details">
+    <div class="flight-time">
+      {{ formattedDepartureTime }}
+    </div>
+    <div class="flight-time-line"></div>
+    <div class="flight-duration">
+      {{ formattedTravelTime }}
+    </div>
+    <div class="flight-time-line"></div>
+    <div class="flight-time">
+      {{ formattedArrivalTime }}
+    </div>
+  </div>
+  <div class="flight-purchase-details">
+    <div class="price-label">
+      <ng-container *ngIf="!selectedFare">
+        <span>from</span> {{ lowestFarePrice }}€
+      </ng-container>
+      <ng-container *ngIf="selectedFare">
+        {{ selectedFarePrice }}€<span> / {{ selectedFare.bundle }}</span>
+      </ng-container>
+    </div>
+    <div *ngIf="selectedFare" class="change-label" (click)="onChangeLabelClick()">
+      change
+    </div>
+  </div>
+
+  <div class="sold-out-cover">
+    <div class="sold-out-message">
+      SOLD OUT
+    </div>
+  </div>
+</div>

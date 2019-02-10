@@ -4,6 +4,7 @@ import { IAirport } from 'src/app/interfaces/airport.interface';
 import { Moment } from 'moment';
 import { Form, NgForm } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
 
 @Component({
   selector: 'app-search-form',
@@ -17,8 +18,14 @@ export class SearchFormComponent {
   @Input()
   public searchParams: ISearchParams = {};
 
+  @Input()
+  public fieryCta: boolean = false;
+
   @ViewChild('searchForm')
   public searchForm: NgForm;
+
+  @ViewChild('datePickerComponent')
+  public datePickerComponent: DatePickerComponent;
 
   public onSubmit(): void {
     if (this.displayAirportWarning() || this.displayTravelDateWarning()) {
