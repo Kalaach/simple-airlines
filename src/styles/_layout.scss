@@ -7,7 +7,7 @@ header {
   text-align: center;
   background-color: $color_dark;
   z-index: 2;
-  
+
   img {
     height: 60%;
     vertical-align: middle;
@@ -49,16 +49,16 @@ aside {
   background-color: white;
   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  
+
   @media screen and (max-width: $breakpoint_level_2) {
     padding-left: $general_padding / 2;
     padding-right: $general_padding / 2;
     width: 220px;
-    transition: 1s top;
+    transition: .5s top;
 
     &.open {
       top: 30%;
-    }  
+    }
   }
 
   @media screen and (max-width: $breakpoint_level_3) {
