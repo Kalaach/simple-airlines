@@ -54,6 +54,7 @@ export class FlightsPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.activatedRoute.url.subscribe(url => {
+      console.log(url);
       this.url = url[0].path;
     });
 
