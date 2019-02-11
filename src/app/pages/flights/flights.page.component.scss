@@ -90,6 +90,7 @@
   }
 
   .summary-opener {
+    display: none;
     position: absolute;
     top: -15px;
     right: 15px;
@@ -100,6 +101,10 @@
     text-align: center;
     background-color: $color_dark;
     cursor: pointer;
+
+    @media screen and (max-width: $breakpoint_level_3) {
+      display: block;
+    }
 
     &:hover {
       background-color: darken($color_dark, 10);
