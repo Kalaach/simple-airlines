@@ -13,14 +13,14 @@
         <div class="flight-list-title">
           <i class="fas fa-plane-departure flight-icon"></i>
           <div class="flight-list-details">
-            <p *ngIf="savedSearchParams.origin && savedSearchParams.destination">
+            <p *ngIf="savedSearchParams && savedSearchParams.origin && savedSearchParams.destination">
               {{ savedSearchParams.origin.shortName }} - {{ savedSearchParams.destination.shortName }}
               <br />
               <span>{{ formatDate(savedSearchParams.departure) }}</span>
             </p>
           </div>
         </div>
-        <img class="loading-indicator" *ngIf="departureFlightListLoading || !savedSearchParams.origin" src="/assets/images/loading.gif" alt="Loading the departures." />
+        <img class="loading-indicator" *ngIf="departureFlightListLoading || !savedSearchParams  || !savedSearchParams.origin" src="/assets/images/loading.gif" alt="Loading the departures." />
         <div class="flight-list-items">
           <ng-container *ngIf="!departureFlightListLoading">
             <ng-container *ngIf="!selectedDepartureFlight">
@@ -38,15 +38,15 @@
         <div class="flight-list-title">
           <i class="fas fa-plane-arrival flight-icon"></i>
           <div class="flight-list-details">
-            <p *ngIf="savedSearchParams.origin && savedSearchParams.destination">
+            <p *ngIf="savedSearchParams && savedSearchParams.origin && savedSearchParams.destination">
               {{ savedSearchParams.destination.shortName }} - {{ savedSearchParams.origin.shortName }}
               <br />
               <span>{{ formatDate(savedSearchParams.arrival) }}</span>
             </p>
           </div>
         </div>
-        <img class="loading-indicator" *ngIf="arrivalFlightListLoading || !savedSearchParams.destination" src="/assets/images/loading.gif" alt="Loading the arrivals." />
-        <div class="flight-list-items" *ngIf="savedSearchParams.arrival">
+        <img class="loading-indicator" *ngIf="arrivalFlightListLoading || !savedSearchParams || !savedSearchParams.destination" src="/assets/images/loading.gif" alt="Loading the arrivals." />
+        <div class="flight-list-items" *ngIf="savedSearchParams && savedSearchParams.arrival">
           <ng-container *ngIf="!arrivalFlightListLoading">
             <ng-container *ngIf="!selectedArrivalFlight">
               <app-flight-item [flight]="flight" *ngFor="let flight of arrivalFlightList"
@@ -68,9 +68,9 @@
     </div>
   </main>
 
-  <!-- <aside *ngIf="true">
+  <aside *ngIf="true">
     <app-summary></app-summary>
-  </aside> -->
+  </aside>
 
   <ng-container *ngIf="farePickerVisible">
     <div class="modal-overlay" (click)="onModalOverlayClick()"></div>

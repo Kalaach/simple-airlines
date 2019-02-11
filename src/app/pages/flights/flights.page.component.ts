@@ -117,7 +117,7 @@ export class FlightsPageComponent {
 
   public onArrivalFlightSelectionCancel(): void {
     this.selectedArrivalFlight = undefined;
-    this.selectedDepartureFare = undefined;
+    this.selectedArrivalFare = undefined;
   }
 
   public onModalOverlayClick(): void {
@@ -133,6 +133,7 @@ export class FlightsPageComponent {
   }
 
   private loadFlightLists(): void {
+    console.log(this.searchFormComponent.datePickerComponent.arrivalDatePicker);
     // if (
     //   this.searchParams.origin.iata !== this.savedSearchParams.origin.iata ||
     //   this.searchParams.destination.iata !== this.savedSearchParams.destination.iata
@@ -149,8 +150,8 @@ export class FlightsPageComponent {
     // }
     this.selectedDepartureFlight = undefined;
     this.selectedDepartureFare = undefined;
-    this.selectedDepartureFlight = undefined;
-    this.selectedDepartureFare = undefined;
+    this.selectedArrivalFlight = undefined;
+    this.selectedArrivalFare = undefined;
 
     this.savedSearchParams = _.cloneDeep(this.searchParams);
 
