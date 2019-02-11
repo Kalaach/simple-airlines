@@ -16,7 +16,7 @@
             <p *ngIf="savedSearchParams && savedSearchParams.origin && savedSearchParams.destination">
               {{ savedSearchParams.origin.shortName }} - {{ savedSearchParams.destination.shortName }}
               <br />
-              <span>{{ formatDate(savedSearchParams.departure) }}</span>
+              <span>{{ formatFlightListTitleDate(savedSearchParams.departure) }}</span>
             </p>
           </div>
         </div>
@@ -41,7 +41,7 @@
             <p *ngIf="savedSearchParams && savedSearchParams.origin && savedSearchParams.destination">
               {{ savedSearchParams.destination.shortName }} - {{ savedSearchParams.origin.shortName }}
               <br />
-              <span>{{ formatDate(savedSearchParams.arrival) }}</span>
+              <span>{{ formatFlightListTitleDate(savedSearchParams.arrival) }}</span>
             </p>
           </div>
         </div>
@@ -68,14 +68,17 @@
     </div>
   </main>
 
-  <aside *ngIf="true">
+  <aside [hidden]="!summaryVisible" [ngClass]="{ 'open': summaryOpen }">
+    <div class="summary-opener" (click)="onSummaryOpenerClick()">
+        <i class="fas" [ngClass]="{ 'fa-chevron-up': !summaryOpen, 'fa-chevron-down': summaryOpen }"></i>
+    </div>
     <app-summary></app-summary>
   </aside>
 
   <ng-container *ngIf="farePickerVisible">
     <div class="modal-overlay" (click)="onModalOverlayClick()"></div>
     <div class="modal">
-      <app-fare-picker [fares]="selectedFlight.fares" [flightDetails]="selectedFlightDetails"
+      <app-fare-picker [fares]="selectedFlight.fares" [flightDirectionDetails]="selectedFlightDirectionDetails"
         (fareSelect)="onFarePick($event)"></app-fare-picker>
     </div>
   </ng-container>

@@ -27,10 +27,11 @@ export class AirportService {
   }
 
   public getAirportByIata(iata: string): Promise<IAirport> {
-    return this.getAirports()
-      .then(airports => {
-        return _.find(airports, { iata });
-      });
+    return this.getAirports().then(airports => _.find(airports, { iata }));
+  }
+
+  public getAirportsByIatas(iatas: Array<string>): Promise<Array<IAirport>> {
+    return this.getAirports().then(airports => iatas.map(iata => _.find(airports, { iata })));
   }
 
   public getAirportsBySearchPhrase(searchPhrase: string): Promise<Array<IAirport>> {

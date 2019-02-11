@@ -3,6 +3,8 @@ import { ISearchParams } from 'src/app/interfaces/search-params.interface';
 import { Router } from '@angular/router';
 
 const DATE_FORMAT: string = 'YYYY-MM-DD';
+const FLIGHTS_PAGE_PATH: string = 'flights';
+
 @Component({
   templateUrl: './search.page.component.html',
   styleUrls: ['./search.page.component.scss']
@@ -18,6 +20,6 @@ export class SearchPageComponent {
       arrival: searchParams.arrival ? searchParams.arrival.format(DATE_FORMAT) : undefined
     };
 
-    this.router.navigate(['flights'], { queryParams });
+    this.router.navigate([FLIGHTS_PAGE_PATH], { queryParams });
   }
 }

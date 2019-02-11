@@ -12,6 +12,10 @@
   .search-panel {
     margin-top: $general_padding * -3;
 
+    @media screen and (max-width: $breakpoint_level_4) {
+      margin-top: 0px;
+    }
+
     .search-panel-header {
       border-bottom: 1px solid $color_border;
       border-top-right-radius: 5px;
@@ -20,6 +24,10 @@
       padding-bottom: $general_padding / 2;
       text-align: center;
       background-color: $color_light;
+
+      @media screen and (max-width: $breakpoint_level_4) {
+        border-radius: 0;
+      }
 
       img {
         width: 240px;
@@ -30,11 +38,15 @@
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 5px;
       padding: $general_padding;
-      text-align: center;
-      color: $color_font_medium;
+      text-align: center;      
       background-color: $color_light;
 
+      @media screen and (max-width: $breakpoint_level_4) {
+        border-radius: 0;
+      }
+
       p {
+        color: $color_font_medium;
         margin-bottom: $general_padding;
       }
     }

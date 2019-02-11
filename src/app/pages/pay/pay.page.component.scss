@@ -1,0 +1,14 @@
+@import '../../../styles/variables';
+
+.pay-page-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $color_light;
+
+  p {
+    text-align: center;
+    color: $color_font_medium;
+  }
+}

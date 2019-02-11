@@ -1,6 +1,10 @@
 @import '../../../styles/variables';
 
 .search-form-component {
+  @media screen and (max-width: $breakpoint_level_4) {
+    width: 100%;
+  }
+
   .search-form-line {
     position: relative;
     margin-bottom: $general_padding;

@@ -1,5 +1,5 @@
-export interface IFarePickerFlightDetails {
-  originShortName: string;
-  destinationShortName: string;
-  flightDateFormatted: string;
+export interface IFlightDirectionDetails {
+  originShortName?: string;
+  destinationShortName?: string;
+  flightDateFormatted?: string;
 }

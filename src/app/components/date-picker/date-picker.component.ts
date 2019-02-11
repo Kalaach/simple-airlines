@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import * as moment from 'moment';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import { Moment } from 'moment';
 
 @Component({
@@ -6,7 +7,7 @@ import { Moment } from 'moment';
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss']
 })
-export class DatePickerComponent {
+export class DatePickerComponent implements OnChanges {
   @Input()
   public departure?: Moment;
 
@@ -22,7 +23,7 @@ export class DatePickerComponent {
   @ViewChild('arrivalDatePicker')
   public arrivalDatePicker: ElementRef;
 
-  public minimumDate: Date = new Date();
+  public minimumDate: Moment = moment().subtract(1, 'd');
   public travelDates: Array<Moment> = [];
 
   public ngOnChanges(): void {

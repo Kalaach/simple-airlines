@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { Component, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, Input, EventEmitter, ViewChild, ElementRef, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { AirportService } from 'src/app/services/airport.service';
 import { IAirport } from 'src/app/interfaces/airport.interface';
 import { environment } from '../../../environments/environment';
@@ -11,7 +11,7 @@ const INPUT_DEBOUNCE: number = 300;
   templateUrl: './airport-picker.component.html',
   styleUrls: ['./airport-picker.component.scss']
 })
-export class AirportPickerComponent {
+export class AirportPickerComponent implements OnInit, OnDestroy, OnChanges {
   @Output()
   public originChange: EventEmitter<IAirport> = new EventEmitter<IAirport>();
 
@@ -40,7 +40,7 @@ export class AirportPickerComponent {
     window.addEventListener('click', this.onWindowClick);
   }
 
-  public ngOnDestoy(): void {
+  public ngOnDestroy(): void {
     window.removeEventListener('click', this.onWindowClick);
   }
 

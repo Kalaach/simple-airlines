@@ -1,29 +1,23 @@
 <div class="summary-component">
   <div class="ticket-list">
-    <div class="ticket">
-      <div class="flight-route">Budapest - London Luton</div>
-      <div class="flight-time">2019 feb. 11. 14:25</div>
-      <div class="summary-line">
-        <div class="summary-line-description">basic</div>
-        <div class="summary-line-cost">53€</div>
+    <ng-container *ngFor="let summaryItem of summary">
+      <div class="ticket" *ngIf="summaryItem">
+        <div class="flight-route">{{ summaryItem.flightDirectionDetails.originShortName }} - {{ summaryItem.flightDirectionDetails.destinationShortName }}</div>
+        <div class="flight-time">{{ summaryItem.flightDirectionDetails.flightDateFormatted }}</div>
+        <div class="summary-line">
+          <div class="summary-line-description">{{ summaryItem.fare.bundle }}</div>
+          <div class="summary-line-cost">{{ summaryItem.fare.price }}€</div>
+        </div>
       </div>
-    </div>
-    <div class="ticket">
-      <div class="flight-route">Budapest - London Luton</div>
-      <div class="flight-time">2019 feb. 11. 14:25</div>
-      <div class="summary-line">
-        <div class="summary-line-description">basic</div>
-        <div class="summary-line-cost">53€</div>
-      </div>
-    </div>
+    </ng-container>
   </div>
-  <div class="total">
+  <div class="total" *ngIf="summary.length > 0">
     <div class="summary-line">
       <div class="summary-line-description">TOTAL</div>
-      <div class="summary-line-cost">106€</div>
+      <div class="summary-line-cost">{{ totalCost }}€</div>
     </div>
   </div>
-  <div class="checkout">
-    <button class="fix-width primary button">Checkout</button>
+  <div class="checkout" *ngIf="summary.length > 0">
+    <a class="fix-width primary button" [routerLink]="['/pay']">PAY NOW</a>
   </div>
 </div>

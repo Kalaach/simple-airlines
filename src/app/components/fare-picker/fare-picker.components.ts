@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IFlight } from 'src/app/interfaces/flight.interface';
 import { IFare } from 'src/app/interfaces/fare.interface';
-import { IFarePickerFlightDetails } from 'src/app/interfaces/fare-picker-flight-details.interface';
+import { IFlightDirectionDetails } from 'src/app/interfaces/fare-picker-flight-details.interface';
 
 @Component({
   selector: 'app-fare-picker',
@@ -13,7 +12,7 @@ export class FarePickerComponent {
   public fares: Array<IFare>;
 
   @Input()
-  public flightDetails: IFarePickerFlightDetails;
+  public flightDirectionDetails: IFlightDirectionDetails;
 
   @Output()
   public fareSelect: EventEmitter<IFare> = new EventEmitter<IFare>();

@@ -1,15 +1,17 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { IFlight } from 'src/app/interfaces/flight.interface';
 import { IFare } from 'src/app/interfaces/fare.interface';
+
+const HOUR_TIME_FORMAT: string = 'HH:mm';
 
 @Component({
   selector: 'app-flight-item',
   templateUrl: './flight-item.component.html',
   styleUrls: ['./flight-item.component.scss']
 })
-export class FlightItemComponent {
+export class FlightItemComponent implements OnChanges {
   @Input()
   public flight: IFlight;
 
@@ -42,7 +44,7 @@ export class FlightItemComponent {
   }
 
   public getFormattedFlightTime(date: string): string {
-    return moment(date).format('HH:mm');
+    return moment(date).format(HOUR_TIME_FORMAT);
   }
 
   public getFormattedFlightTravelTime(departureDate: string, arrivalTime: string): string {

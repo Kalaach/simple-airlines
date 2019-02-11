@@ -7,11 +7,34 @@ header {
   text-align: center;
   background-color: $color_dark;
   z-index: 2;
+  
+  img {
+    height: 60%;
+    vertical-align: middle;
+  }
 }
 
 main {
   margin: 0 auto;
   width: 680px;
+
+  @media screen and (max-width: $breakpoint_level_1) {
+    width: 420px;
+  }
+
+  @media screen and (max-width: $breakpoint_level_2) {
+    padding-bottom: 75px;
+  }
+
+  @media screen and (max-width: $breakpoint_level_3) {
+    width: 420px;
+  }
+
+  @media screen and (max-width: $breakpoint_level_4) {
+    width: auto;
+    margin-left: $general_padding / 2;
+    margin-right: $general_padding / 2;
+  }
 }
 
 aside {
@@ -19,11 +42,33 @@ aside {
   top: 0;
   right: 0;
   padding-top: 50px;
-  width: 300px;
+  padding-left: $general_padding;
+  padding-right: $general_padding;
+  width: 240px;
   height: 100vh;
   background-color: white;
   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  
+  @media screen and (max-width: $breakpoint_level_2) {
+    padding-left: $general_padding / 2;
+    padding-right: $general_padding / 2;
+    width: 220px;
+    transition: 1s top;
+
+    &.open {
+      top: 30%;
+    }  
+  }
+
+  @media screen and (max-width: $breakpoint_level_3) {
+    padding: $general_padding / 2 $general_padding;
+    width: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: -75px;
+  }
 }
 
 .modal-overlay {
@@ -46,4 +91,11 @@ aside {
   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
   transform: translate(-50%, -50%);
   z-index: 4;
+
+  @media screen and (max-width: $breakpoint_level_4) {
+    left: $general_padding / 2;
+    right: $general_padding / 2;
+    width: auto;
+    transform: translate(0, -50%);
+  }
 }
