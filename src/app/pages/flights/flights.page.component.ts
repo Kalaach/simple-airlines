@@ -53,11 +53,6 @@ export class FlightsPageComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.activatedRoute.url.subscribe(url => {
-      console.log(url);
-      this.url = url[0].path;
-    });
-
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       const originIata: string = params.origin;
       const destinationIata: string = params.destination;
@@ -93,7 +88,7 @@ export class FlightsPageComponent implements OnInit {
     }
     const encodedQueryParams = Object.keys(queryParams).map(key => key + '=' + queryParams[key]).join('&');
 
-    window.history.replaceState({}, '', `/${this.url}?${encodedQueryParams}`);
+    window.history.replaceState({}, '', `${window.location.pathname}?${encodedQueryParams}`);
     this.searchParams = searchParams;
     this.loadFlightLists();
   }
