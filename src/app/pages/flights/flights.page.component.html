@@ -1,6 +1,6 @@
 <div class="flights-page-component">
   <header>
-    <img src="/assets/images/logo_light.png" alt="Simple Airlines logo." />
+    <img src="assets/images/logo_light.png" alt="Simple Airlines logo." />
   </header>
 
   <main>
@@ -20,7 +20,7 @@
             </p>
           </div>
         </div>
-        <img class="loading-indicator" *ngIf="departureFlightListLoading || !savedSearchParams  || !savedSearchParams.origin" src="/assets/images/loading.gif" alt="Loading the departures." />
+        <img class="loading-indicator" *ngIf="departureFlightListLoading || !savedSearchParams  || !savedSearchParams.origin" src="assets/images/loading.gif" alt="Loading the departures." />
         <div class="flight-list-items">
           <ng-container *ngIf="!departureFlightListLoading">
             <ng-container *ngIf="!selectedDepartureFlight">
@@ -45,7 +45,7 @@
             </p>
           </div>
         </div>
-        <img class="loading-indicator" *ngIf="arrivalFlightListLoading || !savedSearchParams || !savedSearchParams.destination" src="/assets/images/loading.gif" alt="Loading the arrivals." />
+        <img class="loading-indicator" *ngIf="arrivalFlightListLoading || !savedSearchParams || !savedSearchParams.destination" src="assets/images/loading.gif" alt="Loading the arrivals." />
         <div class="flight-list-items" *ngIf="savedSearchParams && savedSearchParams.arrival">
           <ng-container *ngIf="!arrivalFlightListLoading">
             <ng-container *ngIf="!selectedArrivalFlight">

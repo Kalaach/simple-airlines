@@ -1,6 +1,5 @@
 import * as moment from 'moment';
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
-import { Moment } from 'moment';
 
 @Component({
   selector: 'app-date-picker',
@@ -9,22 +8,22 @@ import { Moment } from 'moment';
 })
 export class DatePickerComponent implements OnChanges {
   @Input()
-  public departure?: Moment;
+  public departure?: moment.Moment;
 
   @Input()
-  public arrival?: Moment;
+  public arrival?: moment.Moment;
 
   @Output()
-  public departureChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+  public departureChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
 
   @Output()
-  public arrivalChange: EventEmitter<Moment> = new EventEmitter<Moment>();
+  public arrivalChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
 
   @ViewChild('arrivalDatePicker')
   public arrivalDatePicker: ElementRef;
 
-  public minimumDate: Moment = moment().subtract(1, 'd');
-  public travelDates: Array<Moment> = [];
+  public minimumDate: moment.Moment = moment().subtract(1, 'd');
+  public travelDates: Array<moment.Moment> = [];
 
   public ngOnChanges(): void {
     this.travelDates = [ this.departure, this.arrival ];
