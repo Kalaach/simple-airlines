@@ -22,7 +22,8 @@ export class DatePickerComponent implements OnChanges {
   @ViewChild('arrivalDatePicker')
   public arrivalDatePicker: ElementRef;
 
-  public minimumDate: moment.Moment = moment().subtract(1, 'd');
+  public departureMinimumDate: moment.Moment = moment().subtract(1, 'd');
+  public arrivalMinimumDate: moment.Moment = moment();
   public travelDates: Array<moment.Moment> = [];
 
   public ngOnChanges(): void {

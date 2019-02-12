@@ -2,7 +2,7 @@
   <input
     type="text"
     name="departure"
-    [min]="minimumDate"
+    [min]="departureMinimumDate"
     [(ngModel)]="travelDates"
     [owlDateTime]="departureDatePicker"
     [owlDateTimeTrigger]="departureDatePicker"
@@ -14,12 +14,12 @@
     #arrivalDateInput
     type="text"
     name="arrival"
-    [min]="minimumDate"
+    [min]="arrivalMinimumDate"
     [(ngModel)]="travelDates"
     [owlDateTime]="arrivalDatePicker"
     [owlDateTimeTrigger]="arrivalDatePicker"
     [selectMode]="'rangeTo'"
-    placeholder="Arrival"
+    placeholder="Return"
     readonly
     autocomplete="off"/>
 
